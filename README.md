@@ -1,3 +1,58 @@
+# js-interview
+
+Interview Questions
+1. Waht is meta programming? How do you achieve in Js?
+2. What is generator in js?
+3. What is JSONP? How does it work?
+4. What is cors? How does it work?
+5. What is event loop?
+6. What is shadowing?
+7. How to create private properties in Js?
+8. What will be output for below code?
+    ```javascript
+    var a = 10;
+    (function(){
+        console.log(a);
+        var a = 20;
+        console.log(a);
+    })()
+   ```
+9. What is critical rendering path? (https://developers.google.com/web/fundamentals/performance/critical-rendering-path)
+10. What is render tree?
+11. What is marcro task and microtask?
+12. What will be output for below code?
+    ```javascript
+         function func1(){
+          setTimeout(()=>{
+            console.log(x);
+            console.log(y);
+          },3000);
+
+          var x = 2;
+          let y = 12;
+        }
+
+        func1();
+    ```
+13. What will be output for below code?
+    ```javascript
+    function func2(){
+      for(var i = 0; i < 3; i++){
+        setTimeout(()=> console.log(i),2000);
+    }
+
+    }
+
+    func2();
+    ```
+ 14. What will be output for below code?
+     ```javascript
+        let x= {}, y = {name:"Ronny"},z = {name:"John"};
+        x[y] = {name:"Vivek"};
+        x[z] = {name:"Akki"};
+        console.log(x[y]);
+     ```
+  
 # interviews
 
 ## Get address from any one of the object of the array with destructuring.
