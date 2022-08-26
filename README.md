@@ -2,18 +2,25 @@
 
 ## Get address from any one of the object of the array with destructuring.
 
-`var users = [
+```javascript 
+var users = [
 	{name:'x', address:{pincode:'123'}}, 
 	{name:'y', address:{pincode:'1234'}}
-];`
+]; 
+``` 
 
 ## Solution
-`const [userOne] = users;
+
+```javascript 
+const [userOne] = users;
 const {address} = userOne;
-const {pincode} = address;`
+const {pincode} = address; 
+``` 
 
 ## Question
-`let temp = [
+
+```javascript 
+let temp = [
   {
 	type: 'ULCER',
 	prob: 20,
@@ -26,10 +33,12 @@ const {pincode} = address;`
 	type: 'BP',
 	prob: 30,
   },
-]`
+] 
+``` 
 
 
-`let output = [
+```javascript 
+let output = [
   {
 	subType: 'ULCER',
 	prob: 20,
@@ -42,40 +51,44 @@ const {pincode} = address;`
 	subType: 'BP',
 	prob: 30,
   },
-]`
+]
+``` 
 
 ## Solutions
-`const actualOutput = temp.map(({type, ...rest})=>({...rest, subType: type}));`
+```javascript const actualOutput = temp.map(({type, ...rest})=>({...rest, subType: type}));``` 
 
 ## Merge below array of objects based on age.
-`var input1 = [
+
+```javascript 
+var input1 = [
 	{name:'nisum',office:"kondapur1",age:10},
 	{name:'nisum',office:"kondapur2",age:20},
 	{name:'nisum',office:"kondapur3",age:40},
 	{name:'nisum',office:"kondapur4",age:5},
 	{name:'nisum',office:"kondapur5",age:1}
-	]`
+	] 
+  ``` 
 
-`var input2 = [
+```javascript 
+var input2 = [
 	{location:"hyderabad50",age:50},
 	{location:"hyderabad10",age:10},
 	{location:"hyderabad20",age:20},
 	{location:"hyderabad40",age:40},
 	{location:"hyderabad5",age:5},
 	{location:"hyderabad1",age:1}
-	] `
+	] 
+  ``` 
 
 
-`var result = [
-	{location:"hyderabad10",name:'nisum',office:"kondapur1",age:10},
-	{location:"hyderabad20",name:'nisum',office:"kondapur2",age:20},
-	{location:"hyderabad40",name:'nisum',office:"kondapur3",age:40},
-	{location:"hyderabad5",name:'nisum',office:"kondapur4",age:5},
-	{location:"hyderabad1",name:'nisum',office:"kondapur5",age:1}
-	]` 
+```javascript 
+[{"name":"nisum","office":"kondapur5","age":1,"location":"hyderabad1"},{"name":"nisum","office":"kondapur4","age":5,"location":"hyderabad5"},{"name":"nisum","office":"kondapur1","age":10,"location":"hyderabad10"},{"name":"nisum","office":"kondapur2","age":20,"location":"hyderabad20"},{"name":"nisum","office":"kondapur3","age":40,"location":"hyderabad40"},{"location":"hyderabad50","age":50}]
+```  
 
 ## Solutions
-`const mergeTwoArrays = (arr1, arr2, key)=>{
+
+```javascript 
+const mergeTwoArrays = (arr1, arr2, key)=>{
 	const map = {};
 	[...arr1,...arr2].forEach(ele=>{
 	if(map[ele[key]]){
@@ -85,27 +98,5 @@ const {pincode} = address;`
 	}	
 });
 return Object.values(map);
-}`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} 
+``` 
