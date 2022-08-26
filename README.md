@@ -57,6 +57,7 @@ Interview Questions
 ```javascript 
 // input : 'it is a blue moon light and the quick brown fox jumps over the lazy dog. The lazy dog, ran in the moon light along with the brown fox';
 // output: it=1, is=1, a =1, blue=1, moon=2, light=2, and=1, the=5, quick=1, brown=2, fox=2, jumps =1, over=1, lazy=2, dog=2, ran=1 in = 1, along=1, with=1
+```
   
 # interviews
 
