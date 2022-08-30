@@ -167,3 +167,141 @@ const mergeTwoArrays = (arr1, arr2, key) => {
   return Object.values(map);
 };
 ```
+
+
+```
+/**
+1. How can you change the drop down values for days using react when the month and year is updated. 
+Note :- Need to consider for leap year that has 29 days for February month
+2. How can you calculate the day of the week (Mon,Tue,Wed,..) 
+with the assumption of 01/01/2000 is Saturday. 
+Note :- Need to consider for leap year that has February month with 29 days
+ */
+
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import "./styles.css";
+ 
+const dayNames = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const months = [
+  { text: "January", days: 31 },
+  { text: "February", days: 28 }, // 29 days if leap year
+  { text: "March", days: 31 },
+  { text: "April", days: 30 },
+  { text: "May", days: 31 },
+  { text: "June", days: 30 },
+  { text: "July", days: 31 },
+  { text: "August", days: 31 },
+  { text: "September", days: 30 },
+  { text: "October", days: 31 },
+  { text: "November", days: 30 },
+  { text: "December", days: 31 }
+];
+
+const ToDoApp = () => {
+  const [dayOfWeek, setDayOfWeek] = useState("");
+  const [year, setYear]= useState(2000);
+  const [month, setMonth]= useState(months[0].text);
+  const [days, setDays]= useState(months[0].days);
+  const [isLeap, setLeap]= useState(months[0].days);
+  const [day, setDay]= useState(1);
+
+  useEffect(()=>{
+    const monthObj = months.find(({text})=>text===month)
+    const extraDay = (year%4 === 0 && month === 'February' ? 1: 0);
+    setLeap(!!extraDay);
+    setDays(monthObj.days+extraDay);
+  },[year, month])
+
+  const getYears = () => {
+    let opt = [];
+    for (let i = 2000; i <= 2050; i++) {
+      opt.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return opt;
+  };
+
+  const getDays = (range=31) => {
+    let opt = [];
+    for (let i = 1; i <= range; i++) {
+      opt.push(
+        <option value={i} key={i}>
+          {i}
+        </option>
+      );
+    }
+    return opt;
+  };
+
+  const getDayOfWeek = () => {
+    
+    const daysFromYear = (year-2000)*365; 
+
+    let accumulatedLeapDays=0;
+    for (let i = 2000; i < year; i++) {
+      if(i%4 === 0){
+        accumulatedLeapDays++;
+      }
+    }
+
+    let monthIndex;
+    let daysOfMonth;
+
+    months.find(({text, days}, index)=>{
+      if(text === month) { 
+        monthIndex=index+1;
+        daysOfMonth = days;
+        return true
+      }else{
+        return false
+      }});
+
+    const daysFromMonth = (monthIndex-1)*(daysOfMonth);
+    const daysFromDay = day-1;
+    const totalDays = daysFromDay + daysFromMonth + daysFromYear + accumulatedLeapDays;
+    const _dayOfWeek = totalDays%7;
+    setDayOfWeek(dayNames[_dayOfWeek]);
+  };
+
+const changeMonth = (event)=>{
+  setMonth(event.target.value)
+}
+const changeYear  = (event)=>{
+  setYear(event.target.value);
+}
+const changeDay = (event)=>{
+  setDay(event.target.value);
+}
+
+  return (
+    <div>
+      <h2>Year</h2>
+      <select name="years" id="years" onChange={changeYear}>
+        {getYears()}
+      </select>
+      <h2>Month</h2>
+      <select name="month" id="month" onChange={changeMonth}>
+        {months.map((item) => (
+          <option value={item.text} key={item.text}>
+            {item.text}
+          </option>
+        ))}
+      </select>
+      <h2>Day</h2>
+      <select name="day" id="day" onChange={changeDay}>
+        {getDays(days)}
+      </select>
+      <p>
+        <button onClick={getDayOfWeek}>Submit</button>
+      </p>
+      <p className="outLabel">{dayOfWeek}</p>
+    </div>
+  );
+};
+ReactDOM.render(<ToDoApp />, document.getElementById("root"));
+
+```
